@@ -1,0 +1,164 @@
+// Library Array
+let myLibrary=[/*[title = 'The Hobbit', author='tolk'],[title='shh', author='me',t='t']*/];
+
+// Object Constructor
+
+function Book(title, author, pages, read){
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
+  
+}
+// function to return info abt a book
+Book.prototype.info = function(){
+    return `${this.title} by ${this.author}, ${this.pages} pages,${this.read}`;
+
+}
+//dummy book 
+//const book1 = new Book('The Hobbit', 'Tolkein','500','not read yet');
+
+
+//function to add a book to array
+function addBookToLibrary(){
+myLibrary.push(book1);
+
+}
+
+//Create object from form info 
+document.getElementById("sub").addEventListener('click', function (){
+  if(document.getElementById('booklog') !==null){
+  document.getElementById('testme').remove();}
+  else {
+    
+let title = document.querySelector('#title').value;
+let author = document.querySelector('#author').value;
+let pages = document.querySelector('#pages').value;
+let readq = document.querySelector('#read');
+let read = readq.options[readq.selectedIndex].value;
+
+//creates object and sends to array
+let book = new Book (title,author,pages,read); 
+myLibrary.push(book);
+
+
+console.log(book)
+console.log(`${title}, by ${author}, ${pages}, ${read}`);
+
+
+//test of table
+
+const tbl = document.createElement("table");
+tbl.id='booklog'
+const tblBody = document.createElement('tbody');
+/*
+const row=document.createElement('tr');
+let cell = document.createElement('td');
+let cellText = document.createTextNode(myLibrary[0].title);
+
+cell.appendChild(cellText);
+row.appendChild(cell);
+cell = document.createElement('td');
+cellText = document.createTextNode(myLibrary[0].author);
+
+cell.appendChild(cellText);
+row.appendChild(cell);
+ cell = document.createElement('td');
+cellText = document.createTextNode(myLibrary[0].pages);
+
+cell.appendChild(cellText);
+row.appendChild(cell);
+ cell = document.createElement('td');
+cellText = document.createTextNode(myLibrary[0].read);
+
+
+cell.appendChild(cellText);
+row.appendChild(cell); */
+
+//test 2
+for(i=0; i < myLibrary.length; i++){
+const row=document.createElement('tr');
+let cell = document.createElement('td');
+
+let cellText = document.createTextNode(myLibrary[i].title);
+
+
+cell.appendChild(cellText);
+row.appendChild(cell);
+cell = document.createElement('td');
+cellText = document.createTextNode(myLibrary[i].author);
+
+cell.appendChild(cellText);
+row.appendChild(cell);
+ cell = document.createElement('td');
+cellText = document.createTextNode(myLibrary[i].pages);
+
+cell.appendChild(cellText);
+row.appendChild(cell);
+ cell = document.createElement('td');
+cellText = document.createTextNode(myLibrary[i].read);
+
+
+cell.appendChild(cellText);
+row.appendChild(cell);
+
+  tblBody.appendChild(row);}
+
+    
+
+//}
+//tbl.appendChild(tblBody);
+// appends <table> into <body>
+document.getElementById('testme').appendChild(tblBody);
+// sets the border attribute of tbl to '2'
+//tbl.setAttribute("border", "2");
+
+  }
+})
+
+
+
+
+
+
+
+//Trying to Create Output Table
+
+/*
+function test(){const tbl = document.createElement("table");
+const tblBody = document.createElement('tbody');
+
+for (let i = 0; i < myLibrary.length; i++){
+  const row = document.createElement("tr");
+
+
+  for(let j = 0; j <= myLibrary[j].length;j++){
+    const cell = document.createElement('td');
+    const cellText = document.createTextNode(`${myLibrary[i][j]}`) // i might be 1 here so that might not work
+    cell.appendChild(cellText);
+      row.appendChild(cell);
+  }
+  tblBody.appendChild(row);
+
+    
+
+}
+tbl.appendChild(tblBody);
+// appends <table> into <body>
+document.body.appendChild(tbl);
+// sets the border attribute of tbl to '2'
+tbl.setAttribute("border", "2");
+}*/
+/*
+const dataToFill = [[1,2,3], [4,5,6], [7,8,9]]
+const fragment = document.createElement('table')
+for (const row of dataToFill){
+  const tr = document.createElement('tr')
+  for (const column of row) {
+    const td = document.createElement('td')
+    td.textContent = column
+    tr.appendChild(td)
+  }
+  fragment.appendChild(tr)
+}
+document.getElementById('bod').appendChild(fragment)*/
