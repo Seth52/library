@@ -9,12 +9,14 @@
 
 
 #bod{
-    display:grid;
+    display:inline-grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr) 1fr;
     text-align: center;
+  
 gap:5px;
-max-height:10px;
+padding:10px;
+
 
 }
 #bod > button {
@@ -24,6 +26,10 @@ margin-left: 40%;
 margin-right: 40%;
 
 }
+#bod * input{
+    border: 1px solid black;
+}
+
 #myBooks{
     min-height: 100px;
     max-height:100px;
