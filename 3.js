@@ -58,22 +58,41 @@ function up(){
     
     // read
 
-     let reader = document.createElement('td');  
-     //reader.classList.add('reader'); 
-    //cellText = document.createTextNode(myLibrary[i].read);
-      
-    cellText=document.createElement('input');
-    cellText.type="checkbox";
-    cellText.setAttribute('id','reader');
-    cellText.classList.add('reader');
+     let reader = document.createElement('td'); 
+     reader.classList.add('reader');  
+     reader.id=`reader${i}`;
    
-    function check(){
+    //cellText = document.createTextNode(myLibrary[i].read);
+    
+       function big(){
+
+        if(myLibrary[i].read == true){
+             readText = document.createTextNode("Read");
+            
+            console.log('true');
+        }
+        else {readText=document.createTextNode("Not Read");
+        
+        
+        console.log('why')}
+      
+    }
+big();
+
+       
+  
+    //cellText=document.createElement('input');
+    //cellText.type="checkbox";
+    //cellText.setAttribute('id','reader');
+    //cellText.classList.add('reader');
+   
+    /*function check(){
       if(myLibrary[i].read == true){
      cellText.checked =true;
       }
     };
-    check();
-    reader.appendChild(cellText);
+    check();*/
+    reader.appendChild(readText);
     row.appendChild(reader);
     
   
@@ -125,16 +144,26 @@ function up(){
 const did = document.querySelector('#testme');
 console.log(did);
  did.addEventListener('click',function(e){
- 
-
-   if(e.target.className =='reader'){
-    console.log(e.target.id)
-     console.log(reader.checked);
-    // for(i=0;i<myLibrary.length;i++){
-
-     //}
-     //read = reader.checked;
-     //console.log(e.target.parentNode)
+    if(e.target.className =='reader'){
+    console.log(e.target.id);
+     let c = e.target;
+     console.log(c);
+    
+    for(i=0;i<myLibrary.length;i++){
+        let g=e.target.id.replace('reader','');
+        console.log(g);
+        if (g==i && c.textContent=="Read"){
+          document.getElementById(`reader${g}`).textContent='Not Read';
+            console.log('turn me to not read');
+            myLibrary[g].read===false;
+            console.log(myLibrary[g].read)
+        }
+        else if (g==i && c.textContent=="Not Read"){
+            document.getElementById(`reader${g}`).textContent='Read';
+            myLibrary[g].read==true;
+        }
+     }
+     
      console.log('hi');  }
   
    });

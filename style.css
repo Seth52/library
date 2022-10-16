@@ -26,9 +26,6 @@ margin-left: 40%;
 margin-right: 40%;
 
 }
-#bod * input{
-    border: 1px solid black;
-}
 
 #myBooks{
     min-height: 100px;
@@ -54,4 +51,10 @@ table,td,tr{
     background-color: red;
     color:white;
     border-radius: 10px;
+}
+#yesRead{
+    background-color: green;
+}
+#noRead{
+    background-color:red;
 }
