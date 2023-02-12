@@ -1,14 +1,16 @@
 let myLibrary=[];
 
 
-// filter will remove a specific object from array
-function Book(title,author, pages,read){
+class Book{
+  constructor(title, author, pages, read){
     this.title=title
     this.author=author
     this.pages = pages
     this.read= read
-   
+  }
 }
+
+
 
 
 function up(){
@@ -23,9 +25,11 @@ function up(){
     //creates object and sends to array
     let book = new Book (title,author,pages,read); 
     myLibrary.push(book);
+    create();
+  }
     
 
-    
+    function create(){
     
     //test of table creation
     
@@ -58,22 +62,31 @@ function up(){
     
     // read
 
-     let reader = document.createElement('td');  
-     //reader.classList.add('reader'); 
-    //cellText = document.createTextNode(myLibrary[i].read);
-      
-    cellText=document.createElement('input');
-    cellText.type="checkbox";
-    cellText.setAttribute('id','reader');
-    cellText.classList.add('reader');
+     let reader = document.createElement('td'); 
+     reader.classList.add('reader');  
+     reader.id=`reader${i}`;
    
-    function check(){
-      if(myLibrary[i].read == true){
-     cellText.checked =true;
+    //cellText = document.createTextNode(myLibrary[i].read);
+    
+       function big(){
+
+        if(myLibrary[i].read == true){
+             readText = document.createTextNode("Read");
+            
+          
+        }
+        else {readText=document.createTextNode("Not Read");
+        
+        
       }
-    };
-    check();
-    reader.appendChild(cellText);
+      
+    }
+big();
+
+       
+  
+  
+    reader.appendChild(readText);
     row.appendChild(reader);
     
   
@@ -123,19 +136,29 @@ function up(){
 
 // READ STATUS  -- need to update object -- need to have true false event listener for other added books and update object 
 const did = document.querySelector('#testme');
-console.log(did);
+
  did.addEventListener('click',function(e){
+    if(e.target.className =='reader'){
+  
+     let c = e.target;
+    
+    
+    for(i=0;i<myLibrary.length;i++){
+        let g=e.target.id.replace('reader','');
  
-
-   if(e.target.className =='reader'){
-    console.log(e.target.id)
-     console.log(reader.checked);
-    // for(i=0;i<myLibrary.length;i++){
-
-     //}
-     //read = reader.checked;
-     //console.log(e.target.parentNode)
-     console.log('hi');  }
+        if (g==i && c.textContent=="Read"){
+          document.getElementById(`reader${g}`).textContent='Not Read';
+           
+            myLibrary[g].read=false;
+      
+        }
+        else if (g==i && c.textContent=="Not Read"){
+            document.getElementById(`reader${g}`).textContent='Read';
+            myLibrary[g].read=true;
+        }
+     }
+     
+     }
   
    });
 
@@ -145,21 +168,23 @@ console.log(did);
 
 
     //delete books    
-    const list= document.querySelector('#testme');
-    console.log(list)
-    list.addEventListener('click',function(e){
-        if(e.target.className == 'removal'){
-            e.target.parentNode.remove();
-            
-            
-           
-          for(i=0;i<myLibrary.length;i++){
-            let g = e.target.id.replace('remove','');
-            if (g==i){
+    const list= document.getElementById('testme');
+  
+    list.addEventListener('click',(e)=>{
+        if(e.target.className=='removal'){
+            for(let i = 0;  i<=myLibrary.length;i++){
+              let g = e.target.id.replace('remove','');
+              if(g==i){
                 myLibrary.splice(i,1)
+                e.target.parentNode.parentNode.remove();
+              }
             }
-           }
-                                            } 
+
+
+        }
+
+      create();
+       
                                              })
 
  Book.prototype.read = function(){
@@ -187,3 +212,6 @@ console.log(did);
     
 
 */
+
+
+// filter will remove a specific object from array
